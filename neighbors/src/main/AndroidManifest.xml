@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BDDI">
-        <activity android:name=".NeighborsActivity">
+        <activity android:name=".ui.NeighborsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

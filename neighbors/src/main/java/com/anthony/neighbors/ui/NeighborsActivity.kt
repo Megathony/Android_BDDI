@@ -1,20 +1,23 @@
-package com.anthony.neighbors
+package com.anthony.neighbors.ui
 
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.anthony.neighbors.fragments.ListNeighborsFragment
+import com.anthony.neighbors.R
+import com.anthony.neighbors.di.DI
+import com.anthony.neighbors.ui.fragments.ListNeighborsFragment
 
 class NeighborsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DI.inject(baseContext)
 
         setContentView(R.layout.activity_neighbors)
         changeFragment(ListNeighborsFragment())
 
         val button: Button = findViewById(R.id.click_me)
-        button.setOnClickListener{
+        button.setOnClickListener {
             // val intent = Intent(baseContext, MySecondActivity::class.java)
             // startActivity(intent)
 

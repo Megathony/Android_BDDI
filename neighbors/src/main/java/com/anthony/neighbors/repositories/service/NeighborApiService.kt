@@ -1,6 +1,5 @@
-package com.anthony.neighbors.data.service
+package com.anthony.neighbors.repositories.service
 
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import com.anthony.neighbors.models.Neighbor
 

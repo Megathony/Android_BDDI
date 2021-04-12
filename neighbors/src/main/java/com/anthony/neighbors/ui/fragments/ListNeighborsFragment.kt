@@ -1,5 +1,7 @@
-package com.anthony.neighbors.fragments
+package com.anthony.neighbors.ui.fragments
 
+import NeighborDataBase
+import android.app.Application
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
@@ -10,14 +12,19 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.anthony.neighbors.R
 import com.anthony.neighbors.adapters.ListNeighborHandler
 import com.anthony.neighbors.adapters.ListNeighborsAdapter
-import com.anthony.neighbors.data.NeighborRepository
+import com.anthony.neighbors.di.DI
+import com.anthony.neighbors.repositories.NeighborRepository
 import com.anthony.neighbors.models.Neighbor
+import com.anthony.neighbors.viewmodels.NeighborViewModel
 
 class ListNeighborsFragment : Fragment(), ListNeighborHandler {
     /**
@@ -40,20 +47,42 @@ class ListNeighborsFragment : Fragment(), ListNeighborHandler {
         return view
     }
 
+    private lateinit var viewModel: NeighborViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(NeighborViewModel::class.java)
+    }
+
+    private fun setData() {
+        // Récupérer l'instance de l'application, si elle est null arrêter l'exécution de la méthode
+        val application: Application = activity?.application ?: return
+
+        val neighbors = NeighborRepository.getInstance(application).getNeighbours()
+
+        neighbors.observe(
+                viewLifecycleOwner,
+                Observer {
+                    val adapter = ListNeighborsAdapter(this, it)
+                    recyclerView.adapter = adapter
+                }
+        )
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         refresh()
     }
 
     private fun refresh() {
-        NeighborRepository.getInstance().getNeighbours().observe(viewLifecycleOwner) {
+        DI.repository.getNeighbours().observe(viewLifecycleOwner) {
             var adapter = ListNeighborsAdapter(this, it)
             recyclerView.adapter = adapter
         }
     }
 
     fun reloadDisplay() {
-        NeighborRepository.getInstance().getNeighbours().observe(
+        DI.repository.getNeighbours().observe(
             viewLifecycleOwner,
             Observer {
                 val adapter = ListNeighborsAdapter(this, it)
@@ -72,7 +101,7 @@ class ListNeighborsFragment : Fragment(), ListNeighborHandler {
                 setPositiveButton(
                     "Valider",
                     DialogInterface.OnClickListener { dialog, id ->
-                        NeighborRepository.getInstance().deleteNeighbor(neighbor)
+                        DI.repository.deleteNeighbor(neighbor)
                         reloadDisplay()
                     }
                 )
@@ -91,7 +120,7 @@ class ListNeighborsFragment : Fragment(), ListNeighborHandler {
     }
 
     override fun onAddFavorite(neighbor: Neighbor) {
-        NeighborRepository.getInstance().addFavNeighbor(neighbor)
+        DI.repository.addFavNeighbor(neighbor)
         reloadDisplay()
     }
 

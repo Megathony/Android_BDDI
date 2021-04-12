@@ -1,4 +1,4 @@
-package com.anthony.neighbors.data.service
+package com.anthony.neighbors.repositories.service
 
 import com.anthony.neighbors.models.Neighbor
 

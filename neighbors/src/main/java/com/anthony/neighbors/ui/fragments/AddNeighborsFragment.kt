@@ -1,4 +1,4 @@
-package com.anthony.neighbors.fragments
+package com.anthony.neighbors.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import android.webkit.URLUtil
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import com.anthony.neighbors.R
-import com.anthony.neighbors.data.NeighborRepository
+import com.anthony.neighbors.repositories.NeighborRepository
 import com.anthony.neighbors.databinding.AddNeighborsFragmentBinding
 import com.anthony.neighbors.models.Neighbor
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputEditText
 import com.anthony.neighbors.NavigationListener
+import com.anthony.neighbors.di.DI
 
 class AddNeighbourFragment : Fragment() {
     private lateinit var formView: View
@@ -133,7 +133,7 @@ class AddNeighbourFragment : Fragment() {
     }
 
     private fun save() {
-        val lastNeighborId = NeighborRepository.getInstance().getNeighbours().value?.last()?.id ?: 0
+        val lastNeighborId = DI.repository.getNeighbours().value?.last()?.id ?: 0
         val id = lastNeighborId + 1
         with(binding) {
             val newNeighbor = Neighbor(
@@ -146,7 +146,7 @@ class AddNeighbourFragment : Fragment() {
                 favorite = false,
                 webSite = inputWeb.text.toString()
             )
-            NeighborRepository.getInstance().createNeighbor(newNeighbor)
+            DI.repository.createNeighbor(newNeighbor)
         }
         (activity as? NavigationListener)?.showFragment(ListNeighborsFragment())
     }

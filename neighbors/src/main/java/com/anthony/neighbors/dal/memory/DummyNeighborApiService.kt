@@ -1,9 +1,9 @@
-package com.anthony.neighbors.data.service
+package com.anthony.neighbors.dal.memory
 
-import android.content.Intent
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.anthony.neighbors.repositories.service.DUMMY_NeighborS
+import com.anthony.neighbors.repositories.service.NeighborApiService
 import com.anthony.neighbors.models.Neighbor
 
 class DummyNeighborApiService : NeighborApiService {
