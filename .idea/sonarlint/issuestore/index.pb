@@ -37,3 +37,5 @@ Pneighbors/src/main/java/com/anthony/neighbors/adapters/NeighborBindingAdapder.k
 Oneighbors/src/main/java/com/anthony/neighbors/fragments/AddNeighborsFragment.kt,f\7\f7e12101bb566ebf70d9e8bc7ab30b22ccd89883
 s
 Cneighbors/src/main/java/com/anthony/neighbors/NavigationListener.kt,b\3\b3fcdba00c4fd8effda2f3d0ac9b78be61782253
+Y
+)app/src/main/res/layout/activity_main.xml,7\6\76b07e40f24cce093536731477540f12e7da3cb6
