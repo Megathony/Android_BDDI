@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Voisins</string>
+    <string name="prompt_delete_message">Supprimer le voisin %1$s ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="prompt_delete_title">Supprimer ?</string>
+    <string name="hint_image">Image</string>
+    <string name="hint_name">Nom</string>
+    <string name="hint_tel">Téléphone</string>
+    <string name="hint_website">Site web</string>
+    <string name="hint_address">Adresse</string>
+    <string name="hint_bio">A propos de moi</string>
+    <string name="action_save">Enregistrer</string>
+    <string name="phoneError">Le numéro doit être au format 0X XX XX XX XX.</string>
+    <string name="urlError">Cet URL est invalide.</string>
+    <string name="listNeighborsTitle">Mes voisins</string>
+    <string name="titleAddNeighbor">Ajouter un voisin</string>
+</resources>

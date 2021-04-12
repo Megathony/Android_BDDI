@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Neighbors</string>
+    <string name="prompt_delete_message">Delete neighbor %1$s ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="prompt_delete_title">Delete ?</string>
+    <string name="hint_image">Image</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_tel">Phone</string>
+    <string name="hint_website">Website</string>
+    <string name="hint_address">Address</string>
+    <string name="hint_bio">About me</string>
+    <string name="action_save">Save</string>
+    <string name="phoneError">The phone number must respect format 0X XX XX XX XX.</string>
+    <string name="urlError">This is not a valid URL.</string>
+    <string name="listNeighborsTitle">My neighbors</string>
+    <string name="titleAddNeighbor">Add a new neighbor</string>
+</resources>

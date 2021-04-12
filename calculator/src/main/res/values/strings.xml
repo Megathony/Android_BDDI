@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="first_operand">Numéro 1</string>
+    <string name="compute_button">Calculer</string>
+    <string name="second_operand">Numéro 2</string>
+</resources>
