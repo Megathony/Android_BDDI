@@ -1,11 +1,8 @@
 package com.anthony.neighbors.repositories
 
-import RoomNeighborDataSource
-import android.app.Application
+import com.anthony.neighbors.dal.room.RoomNeighborDataSource
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.anthony.neighbors.adapters.ListNeighborsAdapter
-import com.anthony.neighbors.dal.memory.DummyNeighborApiService
 import com.anthony.neighbors.repositories.service.NeighborApiService
 import com.anthony.neighbors.models.Neighbor
 

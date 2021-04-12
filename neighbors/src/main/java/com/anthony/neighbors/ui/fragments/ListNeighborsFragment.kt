@@ -1,6 +1,5 @@
 package com.anthony.neighbors.ui.fragments
 
-import NeighborDataBase
 import android.app.Application
 import android.content.DialogInterface
 import android.content.Intent
@@ -16,8 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.anthony.neighbors.R
 import com.anthony.neighbors.adapters.ListNeighborHandler
 import com.anthony.neighbors.adapters.ListNeighborsAdapter

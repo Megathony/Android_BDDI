@@ -1,3 +1,5 @@
+package com.anthony.neighbors.dal.room.entities
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
