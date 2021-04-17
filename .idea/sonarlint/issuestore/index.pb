@@ -23,3 +23,7 @@ Mneighbors/src/main/java/com/anthony/neighbors/adapters/ListNeighborHandler.kt,
 Pneighbors/src/main/java/com/anthony/neighbors/adapters/NeighborBindingAdapder.kt,d\d\dd1d24afeb1c0db14caf6ac90b0b5e8333856459
 s
 Cneighbors/src/main/java/com/anthony/neighbors/NavigationListener.kt,b\3\b3fcdba00c4fd8effda2f3d0ac9b78be61782253
+u
+Eneighbors/src/main/java/com/anthony/neighbors/ui/NeighborsActivity.kt,8\4\848dce6e2c1d1bf3a9b7b7a20393bbbd019d228a
+‚
+Rneighbors/src/main/java/com/anthony/neighbors/ui/fragments/AddNeighborsFragment.kt,c\0\c0d0bccf04765527831a5bed7799cde08019d9a3
