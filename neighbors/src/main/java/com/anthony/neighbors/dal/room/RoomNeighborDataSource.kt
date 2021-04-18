@@ -1,15 +1,16 @@
 package com.anthony.neighbors.dal.room
 
+import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.anthony.neighbors.dal.room.daos.NeighborDao
+import com.anthony.neighbors.dal.utilis.toNeighbor
 import com.anthony.neighbors.models.Neighbor
 import com.anthony.neighbors.repositories.service.NeighborApiService
-import com.anthony.neighbors.dal.utilis.toNeighbor
 
-class RoomNeighborDataSource(context: Context) : NeighborApiService {
-    private val database: NeighborDataBase = NeighborDataBase.getDataBase(context)
+class RoomNeighborDataSource(application: Application) : NeighborDatasource {
+    private val database: NeighborDataBase = NeighborDataBase.getDataBase(application)
     private val dao: NeighborDao = database.neighborDao()
 
     private val _neighors = MediatorLiveData<List<Neighbor>>()
@@ -37,11 +38,7 @@ class RoomNeighborDataSource(context: Context) : NeighborApiService {
         TODO("Not yet implemented")
     }
 
-    override fun updateDataNeighbour(neighbor: Neighbor) {
-        TODO("Not yet implemented")
-    }
-
-    override fun addNeighbour() {
+    override fun updateNeighbour(neighbor: Neighbor) {
         TODO("Not yet implemented")
     }
 }

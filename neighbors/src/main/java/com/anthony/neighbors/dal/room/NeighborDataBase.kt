@@ -21,10 +21,10 @@ abstract class NeighborDataBase : RoomDatabase() {
 
     companion object {
         private var instance: NeighborDataBase? = null
-        fun getDataBase(context: Context): NeighborDataBase {
+        fun getDataBase(application: Application): NeighborDataBase {
             if (instance == null) {
                 instance = Room.databaseBuilder(
-                    context.applicationContext,
+                    application.applicationContext,
                     NeighborDataBase::class.java,
                     "neighbor_database.db"
                 ).addCallback(object : Callback() {

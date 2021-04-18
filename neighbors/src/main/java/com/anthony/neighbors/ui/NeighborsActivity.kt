@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.anthony.neighbors.NavigationListener
 import com.anthony.neighbors.R
+import com.anthony.neighbors.di.DI
 import com.anthony.neighbors.ui.fragments.AddNeighbourFragment
 import com.anthony.neighbors.ui.fragments.ListNeighborsFragment
 
 class NeighborsActivity : AppCompatActivity(), NavigationListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DI.inject(application)
 
         setContentView(R.layout.activity_neighbors)
         showFragment(ListNeighborsFragment())

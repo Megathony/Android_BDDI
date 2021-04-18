@@ -1,22 +1,20 @@
 package com.anthony.neighbors.repositories
 
+import android.app.Application
 import com.anthony.neighbors.dal.room.RoomNeighborDataSource
-import android.content.Context
 import androidx.lifecycle.LiveData
-import com.anthony.neighbors.repositories.service.NeighborApiService
+import com.anthony.neighbors.adapters.ListNeighborsAdapter
 import com.anthony.neighbors.models.Neighbor
 
-class NeighborRepository private constructor(context: Context) {
-    private val dataSource: NeighborApiService
+class NeighborRepository private constructor(application: Application) {
+    private val dataSource: NeighborDatasource
 
     init {
-        dataSource = RoomNeighborDataSource(context)
+        dataSource = RoomNeighborDataSource(application)
     }
 
     // Méthode qui retourne la liste des voisins
     fun getNeighbours(): LiveData<List<Neighbor>> = dataSource.neighbours
-
-    fun delete(neighbor: Neighbor) = dataSource.deleteNeighbour(neighbor)
     fun createNeighbor(neighbor: Neighbor) {
         TODO("Not yet implemented")
     }
@@ -29,13 +27,25 @@ class NeighborRepository private constructor(context: Context) {
         TODO("Not yet implemented")
     }
 
+    fun delete(neighbor: Neighbor) = dataSource.deleteNeighbour(neighbor)
+
+    private fun setData() {
+        // Récupérer l'instance de l'application, si elle est null arrêter l'exécution de la méthode
+        val application: Application = activity?.application ?: return
+
+        val neighbors = NeighborRepository.getInstance(application).getNeighbours()
+        neighbors.observe(viewLifecycleOwner) {
+            val adapter = ListNeighborsAdapter(it, this)
+            binding.neighborsList.adapter = adapter
+        }
+    }
     companion object {
         private var instance: NeighborRepository? = null
 
         // On crée un méthode qui retourne l'instance courante du repository si elle existe ou en crée une nouvelle sinon
-        fun getInstance(context: Context): NeighborRepository {
+        fun getInstance(application: Application): NeighborRepository {
             if (instance == null) {
-                instance = NeighborRepository(context)
+                instance = NeighborRepository(application)
             }
             return instance!!
         }

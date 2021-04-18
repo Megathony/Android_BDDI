@@ -52,18 +52,10 @@ class ListNeighborsFragment : Fragment(), ListNeighborHandler {
     }
 
     private fun setData() {
-        // Récupérer l'instance de l'application, si elle est null arrêter l'exécution de la méthode
-        val application: Application = activity?.application ?: return
-
-        val neighbors = NeighborRepository.getInstance(application).getNeighbours()
-
-        neighbors.observe(
-                viewLifecycleOwner,
-                Observer {
-                    val adapter = ListNeighborsAdapter(this, it)
-                    recyclerView.adapter = adapter
-                }
-        )
+        viewModel.neighbors.observe(viewLifecycleOwner) {
+            val adapter = ListNeighborsAdapter(it, this)
+            binding.neighborsList.adapter = adapter
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
