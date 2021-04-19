@@ -9,13 +9,12 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.anthony.neighbors.R
-import com.anthony.neighbors.repositories.NeighborRepository
 import com.anthony.neighbors.databinding.AddNeighborsFragmentBinding
 import com.anthony.neighbors.models.Neighbor
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputEditText
-import com.anthony.neighbors.NavigationListener
+import com.anthony.neighbors.ui.NavigationListener
 import com.anthony.neighbors.di.DI
 
 class AddNeighbourFragment : Fragment() {

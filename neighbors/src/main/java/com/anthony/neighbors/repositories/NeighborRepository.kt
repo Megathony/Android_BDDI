@@ -1,41 +1,44 @@
 package com.anthony.neighbors.repositories
 
+import android.app.Application
 import com.anthony.neighbors.dal.room.RoomNeighborDataSource
-import android.content.Context
 import androidx.lifecycle.LiveData
-import com.anthony.neighbors.repositories.service.NeighborApiService
+import com.anthony.neighbors.dal.NeighborApiService
+import com.anthony.neighbors.dal.memory.DummyNeighborApiService
 import com.anthony.neighbors.models.Neighbor
 
-class NeighborRepository private constructor(context: Context) {
-    private val dataSource: NeighborApiService
-
+class NeighborRepository private constructor(application: Application) {
+    private var apiService: NeighborApiService
+    private val memoryApiService: NeighborApiService
+    private val persistentApiService: NeighborApiService
     init {
-        dataSource = RoomNeighborDataSource(context)
+        memoryApiService = DummyNeighborApiService()
+        persistentApiService = RoomNeighborDataSource(application)
+
+        apiService = memoryApiService
     }
 
-    // Méthode qui retourne la liste des voisins
-    fun getNeighbours(): LiveData<List<Neighbor>> = dataSource.neighbours
-
-    fun delete(neighbor: Neighbor) = dataSource.deleteNeighbour(neighbor)
-    fun createNeighbor(neighbor: Neighbor) {
-        TODO("Not yet implemented")
+    fun setPersistency(shouldBePersistent: Boolean) {
+        apiService = if (shouldBePersistent) {
+            persistentApiService
+        } else {
+            memoryApiService
+        }
     }
 
-    fun deleteNeighbor(neighbor: Neighbor) {
-        TODO("Not yet implemented")
-    }
+    fun getNeighbours(): LiveData<List<Neighbor>> = apiService.neighbours
 
-    fun addFavNeighbor(neighbor: Neighbor) {
-        TODO("Not yet implemented")
-    }
+    fun createNeighbor(neighbor: Neighbor) = apiService.createNeighbour(neighbor)
+
+    fun deleteNeighbor(neighbor: Neighbor) = apiService.deleteNeighbour(neighbor)
+
+    fun updateFavoriteStatus(neighbor: Neighbor) = apiService.updateFavoriteStatus(neighbor)
 
     companion object {
         private var instance: NeighborRepository? = null
-
-        // On crée un méthode qui retourne l'instance courante du repository si elle existe ou en crée une nouvelle sinon
-        fun getInstance(context: Context): NeighborRepository {
+        fun getInstance(application: Application): NeighborRepository {
             if (instance == null) {
-                instance = NeighborRepository(context)
+                instance = NeighborRepository(application)
             }
             return instance!!
         }

@@ -1,4 +1,4 @@
-package com.anthony.neighbors.dal
+package com.anthony.neighbors.dal.memory
 
 import com.anthony.neighbors.models.Neighbor
 

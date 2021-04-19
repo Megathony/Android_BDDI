@@ -121,6 +121,10 @@ class ListNeighborsFragment : Fragment(), ListNeighborHandler {
         reloadDisplay()
     }
 
+    override fun onOpenPage(neighbor: Neighbor) {
+        TODO("Not yet implemented")
+    }
+
     override fun openWebsite(neighbor: Neighbor) {
         var url = Uri.parse("https://${neighbor.webSite}")
         val i = Intent(Intent.ACTION_VIEW, url)

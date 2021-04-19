@@ -1,4 +1,4 @@
-package com.anthony.neighbors
+package com.anthony.neighbors.ui
 
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment

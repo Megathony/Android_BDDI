@@ -16,9 +16,7 @@ class ListNeighborsAdapter(
 ) : RecyclerView.Adapter<ListNeighborsAdapter.ViewHolder>() {
     private val mNeighbours: List<Neighbor> = items
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var inflater = LayoutInflater.from(parent.context)
-        val binding: NeighborItemBinding =
-            DataBindingUtil.inflate(inflater, R.layout.neighbor_item, parent, false)
+        val binding: NeighborItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.neighbor_item, parent, false)
         return ViewHolder(binding)
     }
 
@@ -38,8 +36,12 @@ class ListNeighborsAdapter(
             callback.onAddFavorite(neighbour)
         }
 
-        holder.binding.itemListFBButton.setOnClickListener {
-            callback.openWebsite(neighbour)
+        holder.binding.itemListPageButton.setOnClickListener {
+            callback.onOpenPage(neighbour)
+        }
+
+        holder.binding.itemListCard.setOnClickListener {
+            callback.onOpenSingle(neighbour)
         }
 
         holder.binding.itemListFavButton.setOnClickListener {

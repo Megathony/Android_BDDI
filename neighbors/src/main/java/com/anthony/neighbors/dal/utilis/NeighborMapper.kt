@@ -4,7 +4,7 @@ import com.anthony.neighbors.dal.room.entities.NeighborEntity
 import com.anthony.neighbors.models.Neighbor
 
 fun NeighborEntity.toNeighbor() = Neighbor(
-    id = id,
+    id = id.toInt(),
     name = name,
     avatarUrl = avatarUrl,
     address = address,
@@ -15,7 +15,7 @@ fun NeighborEntity.toNeighbor() = Neighbor(
 )
 
 fun Neighbor.toEntity() = NeighborEntity(
-    id = id,
+    id = id.toLong(),
     name = name,
     avatarUrl = avatarUrl,
     address = address,

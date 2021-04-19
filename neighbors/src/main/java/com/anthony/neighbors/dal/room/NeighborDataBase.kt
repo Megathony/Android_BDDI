@@ -14,17 +14,18 @@ import java.util.concurrent.Executors
 
 @Database(
     entities = [NeighborEntity::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class NeighborDataBase : RoomDatabase() {
     abstract fun neighborDao(): NeighborDao
 
     companion object {
         private var instance: NeighborDataBase? = null
-        fun getDataBase(context: Context): NeighborDataBase {
+        fun getDataBase(application: Application): NeighborDataBase {
             if (instance == null) {
                 instance = Room.databaseBuilder(
-                    context.applicationContext,
+                    application.applicationContext,
                     NeighborDataBase::class.java,
                     "neighbor_database.db"
                 ).addCallback(object : Callback() {
@@ -38,7 +39,6 @@ abstract class NeighborDataBase : RoomDatabase() {
             }
             return instance!!
         }
-
         private fun insertFakeData() {
             Executors.newSingleThreadExecutor().execute {
                 DUMMY_NeighborS.forEach {
@@ -47,5 +47,5 @@ abstract class NeighborDataBase : RoomDatabase() {
             }
         }
     }
-
 }
+

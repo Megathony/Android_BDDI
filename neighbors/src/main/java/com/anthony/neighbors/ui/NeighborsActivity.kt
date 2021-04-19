@@ -1,11 +1,10 @@
-package com.anthony.neighbors.ui
+package com.anthony.neighbors
 
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.anthony.neighbors.NavigationListener
-import com.anthony.neighbors.R
+import com.anthony.neighbors.ui.NavigationListener
 import com.anthony.neighbors.ui.fragments.AddNeighbourFragment
 import com.anthony.neighbors.ui.fragments.ListNeighborsFragment
 

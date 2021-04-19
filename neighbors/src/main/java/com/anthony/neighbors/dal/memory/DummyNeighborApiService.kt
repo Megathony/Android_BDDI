@@ -2,8 +2,7 @@ package com.anthony.neighbors.dal.memory
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.anthony.neighbors.dal.DUMMY_NeighborS
-import com.anthony.neighbors.repositories.service.NeighborApiService
+import com.anthony.neighbors.dal.NeighborApiService
 import com.anthony.neighbors.models.Neighbor
 
 class DummyNeighborApiService : NeighborApiService {
